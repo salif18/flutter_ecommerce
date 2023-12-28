@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:readmore/readmore.dart';
+import 'package:collection/collection.dart';
 
-class CartItem {
+class ItemPurchase {
   String name;
   String image;
   double prix;
+  int qty;
 
-  CartItem(this.name, this.image, this.prix);
+  ItemPurchase(this.name, this.image, this.prix, this.qty);
 }
 
 class Descriptions extends StatefulWidget {
-  const Descriptions({super.key, required this.item});
+  const Descriptions({Key? key, required this.item}) : super(key: key);
   final dynamic item;
 
   @override
@@ -20,6 +22,7 @@ class Descriptions extends StatefulWidget {
 
 class _DescriptionsState extends State<Descriptions> {
   late dynamic product;
+  int quantity = 0;
 
   @override
   void initState() {
@@ -27,40 +30,47 @@ class _DescriptionsState extends State<Descriptions> {
     product = widget.item;
   }
 
-  List cart = [];
+  List<ItemPurchase> cart = [];
 
-  void addToCart(product) {
+  void addToCart() {
     setState(() {
-      cart = [
-        ...cart,
-        {...product, "qty":1}
-      ];
+      // verifier si le produit est deja mis dans la carte 
+      final existingItem = cart.firstWhereOrNull((item) => item.name == product.name);
+      
+      //si cest le cas il existe modifier selement l'encian qty 
+      if (existingItem != null) {
+        existingItem.qty += quantity;
+      } 
+        //sinon ajouter le nouveau produt
+        cart.add(ItemPurchase(
+          product.name, 
+          product.image,
+          product.prix, 
+          quantity
+        ));
+      //reinitialise a 0 apres lajout
+      quantity = 0;
     });
-   
+    
   }
 
   List<Widget> notationStars(int notes) {
     switch (notes) {
       case 1:
       case 2:
-        return List.generate(1,
-            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(1, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 3:
       case 4:
-        return List.generate(2,
-            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(2, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 5:
       case 6:
-        return List.generate(3,
-            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(3, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 7:
       case 8:
-        return List.generate(4,
-            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(4, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 9:
       case 10:
-        return List.generate(5,
-            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(5, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       default:
         return [];
     }
@@ -141,7 +151,6 @@ class _DescriptionsState extends State<Descriptions> {
                       trimLines: 3,
                       trimMode: TrimMode.Line,
                       trimExpandedText: 'reduire',
-                      //trimCollapsedText: "more",
                       colorClickableText: Colors.deepOrange[400],
                       style: GoogleFonts.roboto(
                           fontSize: 18,
@@ -154,25 +163,40 @@ class _DescriptionsState extends State<Descriptions> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children:[
-                Text("Quantity", style:GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w500)),
-                const SizedBox(width: 20),
-                Row(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                    child: ElevatedButton(onPressed: (){}, child: Text("-"))),
-                  const SizedBox(width: 5),
-                  Text("0",style: GoogleFonts.roboto(fontSize: 20),),
-                  const SizedBox(width: 5),
-                  Container(   
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                    child: ElevatedButton(onPressed: (){}, child: Text("+"))),
-                ]),
-                 
+                  Text("Quantity", style:GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w500)),
+                  const SizedBox(width: 20),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              quantity = (quantity - 1).clamp(0, 99);
+                            });
+                          },
+                          child: const Text("-"),
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      Text(quantity.toString(), style: GoogleFonts.roboto(fontSize: 20)),
+                      const SizedBox(width: 5),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              quantity = (quantity + 1).clamp(0, 99);
+                            });
+                          },
+                          child:const Text("+"),
+                        ),
+                      ),
+                    ]),
                 ]
               ),
               Container(
@@ -191,7 +215,7 @@ class _DescriptionsState extends State<Descriptions> {
                     ),
                   ),
                   onPressed: () {
-                    addToCart(product);
+                    addToCart();
                   },
                 ),
               )
