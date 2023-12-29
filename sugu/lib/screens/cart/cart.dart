@@ -45,7 +45,6 @@ class _MyCartState extends State<MyCart> {
                 itemCount: cart.length,
                 itemBuilder: (BuildContext context, int index) {
                   ItemPurchase item = cart[index];
-
                   return Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
@@ -53,24 +52,39 @@ class _MyCartState extends State<MyCart> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     height: 100,
-                    child: ListTile(
-                      leading: Image.asset(item.image, width: 80, height: 80),
-                      title: Text(item.name,
-                          style: GoogleFonts.roboto(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("${item.qty}",
-                              style: GoogleFonts.roboto(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w300,
-                                  color: const Color.fromARGB(
-                                      255, 133, 133, 133))),
-                          const SizedBox(height: 5),
-                          Text("${item.prix} €"),
-                        ],
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: ListTile(
+                            leading:
+                                Image.asset(item.image, width: 80, height: 80),
+                            title: Text(item.name,
+                                style: GoogleFonts.roboto(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500)),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${item.qty}",
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w300,
+                                        color: const Color.fromARGB(
+                                            255, 133, 133, 133))),
+                                const SizedBox(height: 5),
+                                Text("${item.prix} €"),
+                              ],
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.remove_shopping_cart_outlined, color:Colors.red[300]),
+                          onPressed: () {
+                            global.removeToCart(index);
+                          },
+                        ),
+                      ],
                     ),
                   );
                 },

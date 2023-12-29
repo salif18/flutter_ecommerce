@@ -15,7 +15,7 @@ class VariableGlobal extends ChangeNotifier {
  String _userId;
  String _token;
   // Mon panier
- final List<ItemPurchase> _cart;
+  List<ItemPurchase> _cart;
 
   VariableGlobal()
       : _userId = "",
@@ -42,8 +42,8 @@ class VariableGlobal extends ChangeNotifier {
   }
 
   // fonction suppression du produit dans le panier 
-  void removeToCart(dynamic index){
-     _cart.removeAt(index);
+  void removeToCart(item){
+     _cart.removeAt(item);
      notifyListeners();
   }
 
