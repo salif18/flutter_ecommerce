@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:sugu/global/global_variable.dart';
 import 'package:sugu/screens/cart/cart.dart';
 import 'package:sugu/widgets/badge.dart';
 
@@ -9,6 +11,9 @@ class MyHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    VariableGlobal variableGlobal = Provider.of<VariableGlobal>(context);
+    List<ItemPurchase> myCart = variableGlobal.cart;
+
     return Container(
       padding: EdgeInsets.only(
           top: MediaQuery.of(context).padding.top, left: 20, right: 20),
@@ -32,18 +37,19 @@ class MyHomeAppBar extends StatelessWidget {
               width: 45,
               padding: const EdgeInsets.symmetric(vertical: 5),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 230, 230, 230),
+                // color: const Color.fromARGB(255, 230, 230, 230),
                 border: Border.all(color: const Color.fromARGB(255, 230, 230, 230), width: 1.2),
                 borderRadius: BorderRadius.circular(100),
               ),
-             child: const Stack(
+             child: Stack(
                 children: [
-                  Positioned(
+                  if( myCart.isNotEmpty)
+                    Positioned(
                     right: 0,
                     top: -2,
-                    child: MyBadge(notifCount: 3),
+                    child: MyBadge(notifCount: myCart.length),
                   ),
-                  Icon(
+                  const Icon(
                     Icons.shopping_bag_outlined,
                     color: Color.fromARGB(255, 255, 112, 67),
                     size: 30,

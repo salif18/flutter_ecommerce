@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
-import 'package:collection/collection.dart';
+import 'package:sugu/global/global_variable.dart';
+import 'package:sugu/models/products.dart';
 
-class ItemPurchase {
-  String name;
-  String image;
-  double prix;
-  int qty;
-
-  ItemPurchase(this.name, this.image, this.prix, this.qty);
-}
+//la classe product panier
 
 class Descriptions extends StatefulWidget {
-  const Descriptions({Key? key, required this.item}) : super(key: key);
+  const Descriptions({super.key, required this.item});
   final dynamic item;
 
   @override
@@ -21,6 +16,7 @@ class Descriptions extends StatefulWidget {
 }
 
 class _DescriptionsState extends State<Descriptions> {
+
   late dynamic product;
   int quantity = 0;
 
@@ -30,47 +26,29 @@ class _DescriptionsState extends State<Descriptions> {
     product = widget.item;
   }
 
-  List<ItemPurchase> cart = [];
-
-  void addToCart() {
-    setState(() {
-      // verifier si le produit est deja mis dans la carte 
-      final existingItem = cart.firstWhereOrNull((item) => item.name == product.name);
-      
-      //si cest le cas il existe modifier selement l'encian qty 
-      if (existingItem != null) {
-        existingItem.qty += quantity;
-      } 
-        //sinon ajouter le nouveau produt
-        cart.add(ItemPurchase(
-          product.name, 
-          product.image,
-          product.prix, 
-          quantity
-        ));
-      //reinitialise a 0 apres lajout
-      quantity = 0;
-    });
-    
-  }
 
   List<Widget> notationStars(int notes) {
     switch (notes) {
       case 1:
       case 2:
-        return List.generate(1, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(1,
+            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 3:
       case 4:
-        return List.generate(2, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(2,
+            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 5:
       case 6:
-        return List.generate(3, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(3,
+            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 7:
       case 8:
-        return List.generate(4, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(4,
+            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       case 9:
       case 10:
-        return List.generate(5, (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
+        return List.generate(5,
+            (index) => const Icon(Icons.star, size: 20, color: Colors.amber));
       default:
         return [];
     }
@@ -78,6 +56,8 @@ class _DescriptionsState extends State<Descriptions> {
 
   @override
   Widget build(BuildContext context) {
+    VariableGlobal variableGlobal = Provider.of<VariableGlobal>(context);
+    void Function(Products , int ) addToCart = variableGlobal.addToCart;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -112,8 +92,8 @@ class _DescriptionsState extends State<Descriptions> {
                         ),
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: notationStars(product.notes as int)),
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: notationStars(product.notes as int)),
                       Text(
                         "${product.prix} €",
                         style: const TextStyle(
@@ -160,45 +140,6 @@ class _DescriptionsState extends State<Descriptions> {
                   )
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children:[
-                  Text("Quantity", style:GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.w500)),
-                  const SizedBox(width: 20),
-                  Row(
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              quantity = (quantity - 1).clamp(0, 99);
-                            });
-                          },
-                          child: const Text("-"),
-                        ),
-                      ),
-                      const SizedBox(width: 5),
-                      Text(quantity.toString(), style: GoogleFonts.roboto(fontSize: 20)),
-                      const SizedBox(width: 5),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              quantity = (quantity + 1).clamp(0, 99);
-                            });
-                          },
-                          child:const Text("+"),
-                        ),
-                      ),
-                    ]),
-                ]
-              ),
               Container(
                 padding: const EdgeInsets.all(15),
                 width: double.infinity,
@@ -215,7 +156,7 @@ class _DescriptionsState extends State<Descriptions> {
                     ),
                   ),
                   onPressed: () {
-                    addToCart();
+                    addToCart(product,1);
                   },
                 ),
               )

@@ -1,7 +1,15 @@
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import 'package:sugu/global/global_variable.dart';
 import "package:sugu/routes.dart";
 
-void main() => runApp(const MyApp());
+
+void main() => runApp(
+  ChangeNotifierProvider(
+    create: (context) => VariableGlobal(),
+    child: const MyApp(),
+    )
+  );
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
