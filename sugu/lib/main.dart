@@ -4,12 +4,14 @@ import 'package:sugu/global/global_variable.dart';
 import "package:sugu/routes.dart";
 
 
-void main() => runApp(
+void main(){
+  runApp(
   ChangeNotifierProvider(
     create: (context) => VariableGlobal(),
     child: const MyApp(),
     )
   );
+  }
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
