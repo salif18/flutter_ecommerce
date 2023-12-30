@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +51,7 @@ class MyHomeAppBar extends StatelessWidget {
                     child: MyBadge(notifCount: myCart.length),
                   ),
                   const Icon(
-                    Icons.shopping_bag_outlined,
+                    CupertinoIcons.bag,
                     color: Color.fromARGB(255, 255, 112, 67),
                     size: 30,
                   ),

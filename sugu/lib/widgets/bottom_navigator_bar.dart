@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigator extends StatelessWidget {
@@ -21,7 +22,7 @@ class MyBottomNavigator extends StatelessWidget {
         unselectedItemColor: Colors.black45,
         iconSize: 33,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Maison",),
+          BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Maison",),
           BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined), label: "Favorite"),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_checkout_rounded), label: "Mes achats"),
         ],
