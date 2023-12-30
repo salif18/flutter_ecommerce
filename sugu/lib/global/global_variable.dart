@@ -24,15 +24,12 @@ class Addresse {
 }
 
 class VariableGlobal extends ChangeNotifier {
-  String _userId;
-  String _token;
   double _total;
   // Mon panier
   List<ItemPurchase> _cart;
 
   VariableGlobal()
-      : _userId = "",
-        _token = "",
+      :
         _total = 0,
         _cart = [];
 
@@ -57,7 +54,9 @@ class VariableGlobal extends ChangeNotifier {
 
   // fonction suppression du produit dans le panier
   void removeToCart(item) {
-    _cart.removeAt(item);
+    //rechercher index de lelement dans la carte
+    int index = _cart.indexOf(item);
+    _cart.removeAt(index);
     notifyListeners();
   }
 
@@ -83,19 +82,6 @@ class VariableGlobal extends ChangeNotifier {
     notifyListeners();
   }
 
-//fonction se connecter
-  Future<void> loginUser(String userId, String token) async {
-    _userId = userId;
-    _token = token;
-    notifyListeners();
-  }
-
-//fonction se deconnecter
-  void logoutUser() {
-    _userId = "";
-    _token = "";
-    notifyListeners();
-  }
 
   double calculateTotal() {
     if (_cart.isNotEmpty) {
@@ -109,9 +95,5 @@ class VariableGlobal extends ChangeNotifier {
   }
 
   List<ItemPurchase> get cart => List.from(_cart);
-  String get userId => _userId;
-  String get token => _token;
-  //statut de connection de utilisateur
-  bool get isLogin => _token.isNotEmpty;
   int get total => _total.toInt();
 }
