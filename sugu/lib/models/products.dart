@@ -73,7 +73,7 @@ class Products {
           5),
       Products(
           7,
-          "Nike",
+          "Nike o",
           "assets/images/nike2.png",
           [],
           "Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.",
@@ -117,7 +117,7 @@ class Products {
           5),
       Products(
           2,
-          "Sac",
+          "Sac Lui",
           "assets/images/sac2.png",
           [],
           "Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.",
@@ -127,8 +127,8 @@ class Products {
           6.4,
           5),
           Products(
-          2,
-          "Nike",
+          11,
+          "Nike kepi",
           "assets/images/snackbak.png",
           [],
           "Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.Ori is stranger to peril, but when a fateful flight puts the owlet ku in har'ms way.",
