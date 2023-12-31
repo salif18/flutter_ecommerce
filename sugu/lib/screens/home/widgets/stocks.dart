@@ -35,10 +35,10 @@ class _MyStocksState extends State<MyStocks> {
             child: GridView.builder(
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 50,
-              ),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 5,
+                  childAspectRatio: 0.6),
               shrinkWrap: true,
               itemCount: products.length,
               itemBuilder: (BuildContext context, int index) {
@@ -53,46 +53,44 @@ class _MyStocksState extends State<MyStocks> {
                               padding: const EdgeInsets.all(15),
                               height: MediaQuery.of(context).size.height * 0.8,
                               decoration: const BoxDecoration(
+                                  color: Colors.red,
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(20),
                                       topRight: Radius.circular(20))),
                               child: Descriptions(item: item));
                         });
                   },
-                  child: SizedBox(
-                    child: Column(
-                      children: [
-                        Hero(
-                          tag: item,
-                          child: Container(
+                  child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Hero(
+                        tag: item,
+                        child: Container(
                             width: 200,
-                            height: 135,
+                            height: 200,
                             decoration: BoxDecoration(
                                 color: Colors.grey[200],
-                                shape:BoxShape.rectangle,
+                                shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
-                                    image: AssetImage(item.image))),
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(item.name,
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w400,
-                                      color:
-                                          Color.fromARGB(255, 102, 102, 102))),
-                              Text("${item.prix} €",
-                                  style: GoogleFonts.lato(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.deepOrange))
-                            ])
-                      ],
-                    ),
+                                    image: AssetImage(item.image)))),
+                      ),
+                      const SizedBox(height: 15),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(item.name,
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 102, 102, 102))),
+                            Text("${item.prix} Fcfa",
+                                style: GoogleFonts.lato(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.deepOrange))
+                          ])
+                    ],
                   ),
                 );
               },
@@ -103,3 +101,4 @@ class _MyStocksState extends State<MyStocks> {
     );
   }
 }
+//€

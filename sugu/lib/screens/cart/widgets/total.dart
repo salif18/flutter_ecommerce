@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,16 +10,23 @@ class TotalWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color:Colors.deepOrange[400],
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
               padding: const EdgeInsets.all(15),
-              height: 200,
+              height: 100,
               child: Row(children: [
                 const Text("Total:",
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                        TextStyle(fontSize: 30, fontWeight: FontWeight.w600)),
                 const SizedBox(width: 20),
-                Text("${total.toStringAsFixed(2)} €",
+                Text("${total.toStringAsFixed(2)} Fcfa",
                     style: GoogleFonts.roboto(
-                        fontSize: 33, color: Colors.deepOrange[400]))
+                        fontSize: 25, color: const Color.fromARGB(255, 255, 255, 255)))
               ])) ;
   }
 }

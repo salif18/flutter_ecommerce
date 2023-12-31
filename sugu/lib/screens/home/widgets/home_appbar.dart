@@ -39,7 +39,7 @@ class MyHomeAppBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 5),
               decoration: BoxDecoration(
                 // color: const Color.fromARGB(255, 230, 230, 230),
-                border: Border.all(color: const Color.fromARGB(255, 230, 230, 230), width: 1.2),
+                // border: Border.all(color: const Color.fromARGB(255, 230, 230, 230), width: 1.2),
                 borderRadius: BorderRadius.circular(100),
               ),
              child: Stack(

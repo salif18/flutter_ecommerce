@@ -25,7 +25,7 @@ class Products {
           "Femme",
           "Accessoires",
           "news",
-          9.3,
+          9000,
           5),
       Products(
           3,
@@ -36,7 +36,7 @@ class Products {
           "homme",
           "Accessoires",
           "news",
-          12.3,
+          15000,
           5),
       Products(
           4,
@@ -47,7 +47,7 @@ class Products {
           "Femme",
           "Accessoires",
           "news",
-          23.4,
+          30000,
           5),
       Products(
           5,
@@ -58,7 +58,7 @@ class Products {
           "materiel",
           "Accessoires",
           "news",
-          11.4,
+          230000,
           5),
       Products(
           6,
@@ -69,7 +69,7 @@ class Products {
           "Femme",
           "Accessoires",
           "news",
-          15.9,
+          22000,
           5),
       Products(
           7,
@@ -80,7 +80,7 @@ class Products {
           "Femme",
           "Accessoires",
           "populaire",
-          15.3,
+          6000,
           5),
       Products(
           8,
@@ -91,7 +91,7 @@ class Products {
           "Femme",
           "Accessoires",
           "populaire",
-          7.3,
+          10000,
           5),
       Products(
           9,
@@ -102,7 +102,7 @@ class Products {
           "materiel",
           "Accessoires",
           "populaire",
-          60.8,
+          40000,
           5),
       Products(
           10,
@@ -113,7 +113,7 @@ class Products {
           "Femme",
           "Accessoires",
           "populaire",
-          9.3,
+          9000,
           5),
       Products(
           2,
@@ -124,7 +124,7 @@ class Products {
           "Femme",
           "Accessoires",
           "populaire",
-          6.4,
+          8000,
           5),
           Products(
           11,
@@ -135,7 +135,7 @@ class Products {
            "Femme",
           "Accessoires",
           "populaire",
-          6.4,
+          4000,
           9),
     ];
   }

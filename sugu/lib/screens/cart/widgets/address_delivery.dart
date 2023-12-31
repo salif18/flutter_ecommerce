@@ -111,6 +111,7 @@ class _AddresseFormState extends State<AddresseForm> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        const SizedBox(width: 15),
                         const Icon(Icons.location_on_outlined,
                             size: 30, color: Colors.white),
                         const SizedBox(width: 20),
@@ -133,6 +134,7 @@ class _AddresseFormState extends State<AddresseForm> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            const SizedBox(width: 15),
                             const Icon(Icons.send_outlined,
                                 size: 30, color: Colors.white),
                             const SizedBox(width: 20),

@@ -88,14 +88,14 @@ class _MyNewsState extends State<MyNews> {
                       ),
                       const SizedBox(height: 15),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             item.name,
                             style: GoogleFonts.roboto(
                                 fontSize: 20, fontWeight: FontWeight.w400,  color:const Color.fromARGB(255, 102, 102, 102)),
                           ),
-                          Text("${item.prix} €",
+                          Text("${item.prix} Fcfa",
                               style: GoogleFonts.lato(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,

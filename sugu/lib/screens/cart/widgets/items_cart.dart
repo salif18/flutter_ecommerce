@@ -32,7 +32,7 @@ class ItemsCart extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 5),
-                  Text("${item.prix} €"),
+                  Text("${item.prix} Fcfa"),
                 ],
               ),
             ),

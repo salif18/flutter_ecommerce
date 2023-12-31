@@ -46,7 +46,7 @@ class FirstWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: notationStars(product.notes as int)),
                       Text(
-                        "${product.prix} €",
+                        "${product.prix} Fcfa",
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,

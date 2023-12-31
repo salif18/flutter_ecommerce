@@ -24,10 +24,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Sugu",
       debugShowCheckedModeBanner: false,
-      home: MainRoutes(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white
+      ),
+      home: const MainRoutes(),
     );
   }
 }
